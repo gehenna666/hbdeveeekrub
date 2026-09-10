@@ -55,7 +55,7 @@ export default function GreetingCardScreen({ onNext, onBack }: GreetingCardScree
             {/* Top Kitty Ribbon Banner */}
             <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100/90 text-[#FF4D85] text-xs font-bold mb-4 shadow-inner">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Happy 20th Birthday Princess 🎂🎀</span>
+              <span>Happy 22th Birthday Princess 🎂🎀</span>
             </div>
 
             {/* Kitty Avatar Header */}
