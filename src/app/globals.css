@@ -1,26 +1,223 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --font-mali: 'Mali', cursive, sans-serif;
+    --font-fredoka: 'Fredoka', cursive, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-mali);
+    background-color: #FFF5F8;
+    color: #4A3E3D;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Claymorphism Classes */
+.clay-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border-radius: 2.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    12px 16px 32px rgba(255, 143, 177, 0.18),
+    -10px -10px 24px rgba(255, 255, 255, 0.95),
+    inset 2px 3px 6px rgba(255, 255, 255, 0.8),
+    inset -3px -3px 8px rgba(255, 182, 193, 0.25);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.clay-card-pink {
+  background: linear-gradient(135deg, #FFE8F0 0%, #FFD6E5 100%);
+  border-radius: 2.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    10px 14px 28px rgba(255, 107, 151, 0.22),
+    -8px -8px 20px rgba(255, 255, 255, 0.9),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.7),
+    inset -3px -3px 8px rgba(230, 90, 135, 0.2);
+}
+
+.clay-button {
+  background: linear-gradient(145deg, #FF7FA6 0%, #FF4D85 100%);
+  color: white;
+  border-radius: 1.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    6px 8px 18px rgba(255, 77, 133, 0.35),
+    -4px -4px 12px rgba(255, 255, 255, 0.8),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.5),
+    inset -3px -3px 6px rgba(200, 30, 85, 0.3);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.clay-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    8px 12px 24px rgba(255, 77, 133, 0.45),
+    -4px -4px 14px rgba(255, 255, 255, 0.9),
+    inset 2px 2px 6px rgba(255, 255, 255, 0.6);
+}
+
+.clay-button:active {
+  transform: translateY(2px) scale(0.97);
+  box-shadow: 
+    2px 3px 8px rgba(255, 77, 133, 0.3),
+    inset 3px 3px 8px rgba(180, 20, 70, 0.4),
+    inset -2px -2px 6px rgba(255, 255, 255, 0.3);
+}
+
+.clay-button-secondary {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FFF0F5 100%);
+  color: #FF4D85;
+  border-radius: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    5px 6px 14px rgba(255, 143, 177, 0.18),
+    -4px -4px 10px rgba(255, 255, 255, 0.95),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 5px rgba(255, 182, 193, 0.25);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.clay-button-secondary:hover {
+  transform: translateY(-2px) scale(1.02);
+  color: #E0218A;
+}
+
+.clay-button-secondary:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 
+    inset 2px 2px 5px rgba(255, 143, 177, 0.25),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.9);
+}
+
+.clay-keypad-btn {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FFF2F7 100%);
+  color: #4A3E3D;
+  border-radius: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    6px 8px 16px rgba(255, 150, 180, 0.16),
+    -6px -6px 14px rgba(255, 255, 255, 0.95),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+    inset -2px -2px 5px rgba(255, 182, 193, 0.2);
+  transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.clay-keypad-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  color: #FF4D85;
+}
+
+.clay-keypad-btn:active {
+  transform: translateY(2px) scale(0.94);
+  box-shadow: 
+    inset 3px 3px 7px rgba(255, 107, 151, 0.25),
+    inset -3px -3px 7px rgba(255, 255, 255, 0.9);
+}
+
+.clay-pin-slot {
+  background: #FFF0F5;
+  border-radius: 1.25rem;
+  box-shadow: 
+    inset 3px 3px 6px rgba(255, 140, 170, 0.2),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.95),
+    1px 1px 3px rgba(255, 255, 255, 0.8);
+  border: 1.5px solid rgba(255, 210, 225, 0.6);
+}
+
+.clay-polaroid {
+  background: #FFFFFF;
+  border-radius: 1.5rem;
+  padding: 1rem 1rem 2.2rem 1rem;
+  box-shadow: 
+    10px 18px 36px rgba(255, 120, 160, 0.16),
+    -6px -6px 18px rgba(255, 255, 255, 0.95),
+    inset 0 0 4px rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.clay-polaroid:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    14px 26px 44px rgba(255, 100, 150, 0.24),
+    -8px -8px 22px rgba(255, 255, 255, 0.95);
+}
+
+.clay-input {
+  background: #FFF5F8;
+  border-radius: 1.25rem;
+  border: 2px solid #FFD1DF;
+  box-shadow: 
+    inset 3px 3px 6px rgba(255, 130, 165, 0.15),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.9);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.clay-input:focus {
+  border-color: #FF6B97;
+  box-shadow: 
+    inset 2px 2px 4px rgba(255, 130, 165, 0.2),
+    0 0 0 4px rgba(255, 107, 151, 0.18);
+}
+
+/* Kitty animations */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 107, 151, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(255, 107, 151, 0.6), inset 0 0 16px rgba(255, 255, 255, 0.95);
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF0F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #FFB6C1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF69B4;
 }

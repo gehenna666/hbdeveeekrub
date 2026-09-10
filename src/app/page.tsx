@@ -1,69 +1,103 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import FloatingHearts from "@/components/common/FloatingHearts";
+import MusicPlayer from "@/components/common/MusicPlayer";
+import SparkleCursor from "@/components/common/SparkleCursor";
+import LoveRushButton from "@/components/common/LoveRushButton";
+import MagicVaultScreen from "@/components/step1-passcode/MagicVaultScreen";
+import GreetingCardScreen from "@/components/step2-greeting/GreetingCardScreen";
+import WishScreen from "@/components/step3-wish/WishScreen";
+import PortfolioScreen from "@/components/step3-portfolio/PortfolioScreen";
 
 export default function Home() {
+  const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
+
+  // Scroll to top when changing steps
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentStep]);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="min-h-screen relative overflow-x-hidden bg-gradient-to-b from-[#FFF5F8] via-[#FFEBF2] to-[#FFF0F6]">
+      {/* Ambient Floating Hearts & Sparkles */}
+      <FloatingHearts />
+      <SparkleCursor />
+
+      {/* Floating 3D Vinyl Turntable Music Player */}
+      <MusicPlayer />
+
+      {/* Floating Love Rush Combo Button */}
+      <LoveRushButton />
+
+      {/* Multi-Step Story Container with Smooth Animated Transitions */}
+      <AnimatePresence mode="wait">
+        {/* Step 1: Magic Birthday Vault (11.09.2004 Puzzle + Key Wind-up + 143 BPM Heart Scan) */}
+        {currentStep === 1 && (
+          <motion.div
+            key="step1"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.05, filter: "blur(4px)" }}
+            transition={{ duration: 0.5 }}
+            className="w-full"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+            <MagicVaultScreen onUnlock={() => setCurrentStep(2)} />
+          </motion.div>
+        )}
+
+        {/* Step 2: Heart Tracing & Candle Blow & Letter Reveal */}
+        {currentStep === 2 && (
+          <motion.div
+            key="step2"
+            initial={{ opacity: 0, scale: 0.92, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -30 }}
+            transition={{ duration: 0.55 }}
+            className="w-full"
+          >
+            <GreetingCardScreen
+              onNext={() => setCurrentStep(3)}
+              onBack={() => setCurrentStep(1)}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </motion.div>
+        )}
+
+        {/* Step 3: Dedicated Wish & Reply Station */}
+        {currentStep === 3 && (
+          <motion.div
+            key="step3"
+            initial={{ opacity: 0, scale: 0.92, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -30 }}
+            transition={{ duration: 0.55 }}
+            className="w-full"
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <WishScreen
+              onNext={() => setCurrentStep(4)}
+              onBack={() => setCurrentStep(2)}
+            />
+          </motion.div>
+        )}
+
+        {/* Step 4: Couple Photo Portfolio with Floating Photos in BG */}
+        {currentStep === 4 && (
+          <motion.div
+            key="step4"
+            initial={{ opacity: 0, scale: 0.92, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.55 }}
+            className="w-full"
+          >
+            <PortfolioScreen
+              onBackToWish={() => setCurrentStep(3)}
+              onResetToStart={() => setCurrentStep(1)}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </main>
   );
 }
